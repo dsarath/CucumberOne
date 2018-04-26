@@ -1,15 +1,24 @@
-package testRunners;
+package steps;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import base.BaseUtil;
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
-public class LoginStep {
+public class LoginStep extends BaseUtil{
+	
+	private BaseUtil base;
+
+	public LoginStep(BaseUtil base) {
+		super();
+		this.base = base;
+	}
+	
 	@Given("^I navigate to the login page$")
 	public void iNavigateToTheLoginPage() throws Throwable {
 		//throw new PendingException();
