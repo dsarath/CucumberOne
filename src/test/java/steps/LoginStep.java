@@ -21,7 +21,7 @@ public class LoginStep extends BaseUtil{
 	
 	@Given("^I navigate to the login page$")
 	public void iNavigateToTheLoginPage() throws Throwable {
-		//throw new PendingException();
+		base.Driver.get("http://executeautomation.com/demosite/Login.html");
 	}
 	
 	@And("^I enter the username as \"([^\"]*)\" and password as \"([^\"]*)\"$")

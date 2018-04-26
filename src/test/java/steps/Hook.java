@@ -1,5 +1,7 @@
 package steps;
 
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import base.BaseUtil;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -10,7 +12,6 @@ public class Hook extends BaseUtil{
 	private BaseUtil base;
 
 	public Hook(BaseUtil base) {
-		super();
 		this.base = base;
 	}
 
@@ -18,7 +19,8 @@ public class Hook extends BaseUtil{
 	public void InitializeTest() {
 		System.out.println("\nOpening the Browser ");
 		//Passing a WebDriver Instance
-		base.StepInfo = "FirefoxDriver";
+		System.setProperty("webdriver.gecko.driver", "c:\\geckodriver.exe");
+		Driver = new FirefoxDriver();
 	}
 	
 	@After
@@ -28,7 +30,7 @@ public class Hook extends BaseUtil{
 			//Take a screenshot
 			System.out.println("\nThe Scenario "+scenario.getName()+" is failed, so a screenshot will be saved.");
 		}
-			
+		Driver.close();	
 		System.out.println("\nClosing the Browser ");
 	}
 }
