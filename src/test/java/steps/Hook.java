@@ -20,7 +20,7 @@ public class Hook extends BaseUtil{
 		System.out.println("\nOpening the Browser ");
 		//Passing a WebDriver Instance
 		System.setProperty("webdriver.gecko.driver", "c:\\geckodriver.exe");
-		Driver = new FirefoxDriver();
+		base.Driver = new FirefoxDriver();
 	}
 	
 	@After
@@ -28,9 +28,12 @@ public class Hook extends BaseUtil{
 		
 		if(scenario.isFailed()) {
 			//Take a screenshot
-			System.out.println("\nThe Scenario "+scenario.getName()+" is failed, so a screenshot will be saved.");
+			System.out.println("\nThe Scenario <"+scenario.getName()+"> is failed, so a screenshot will be saved.");
 		}
-		Driver.close();	
+		else {
+			System.out.println("Scenario: "+scenario.getName()+" was Approved!!\nStatus: "+scenario.getStatus());
+		}
+		base.Driver.close();	
 		System.out.println("\nClosing the Browser ");
 	}
 }
