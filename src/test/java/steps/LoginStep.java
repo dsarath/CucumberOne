@@ -13,6 +13,7 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import pages.LoginPage;
 
 public class LoginStep extends BaseUtil{
 	
@@ -36,13 +37,15 @@ public class LoginStep extends BaseUtil{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("UserName")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("Password")));
 		
+		//LoginPage page = new LoginPage(base.Driver);
 		List<User> users = new ArrayList<User>();
 		users = table.asList(LoginStep.User.class);
 		for (User user : users) {
 			System.out.println("Inserting username " + user.username);
-			base.Driver.findElement(By.name("UserName")).sendKeys(user.username);
 			System.out.println("Inserting password " + user.password);
+			base.Driver.findElement(By.name("UserName")).sendKeys(user.username);
 			base.Driver.findElement(By.name("Password")).sendKeys(user.password);
+			//page.Login(user.username, user.password);
 		}
 	}
 	
@@ -52,10 +55,12 @@ public class LoginStep extends BaseUtil{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("UserName")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("Password")));
 		
+		//LoginPage page = new LoginPage(base.Driver);
 		System.out.println("Inserting username " + userName);
 		base.Driver.findElement(By.name("UserName")).sendKeys(userName);;
 		System.out.println("Inserting password " + password);
 		base.Driver.findElement(By.name("Password")).sendKeys(password);;
+		//page.Login(userName, password);
 	}
 
 	@And("^I click login button$")
@@ -63,14 +68,18 @@ public class LoginStep extends BaseUtil{
 		WebDriverWait wait = new WebDriverWait(base.Driver, 15);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("Login")));
 		base.Driver.findElement(By.name("Login")).submit();
+		//LoginPage page = new LoginPage(base.Driver);
+		//page.ClickLogin();
 	}
 
 	@Then("^I should see the userform page$")
 	public void iShouldSeeTheUserFormPage() throws Throwable {
 		WebDriverWait wait = new WebDriverWait(base.Driver, 15);
+		//LoginPage page = new LoginPage(base.Driver);
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("details")));
 			Assert.assertTrue(base.Driver.findElement(By.id("details")).isDisplayed());
+			//Assert.assertTrue(page.InUserForm());
 		} catch (Exception e) {
 			System.out.println("Element not found");
 		}
