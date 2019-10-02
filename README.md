@@ -1,2 +1,2 @@
 # CucumberOne
-Cucumber in Java 1
+Automated Tests using Cucumber in Java
